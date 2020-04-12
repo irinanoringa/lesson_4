@@ -26,51 +26,67 @@ def often_word(listik):
         c_dict[sym]+=1
     print(c_dict)  # выводит словарь
     d=list(c_dict.items())
+    #print(d)
     #print(list(c_dict.values()))   #  выводит список значений
     e=max(list(c_dict.values()))
     #print(max(list(c_dict.values())))  #  выводит максим значение из списка
     #print(c_dict[2])
+
+    most_often=[]
     for key,values in d:
         if values == e:
-           # return(key,':',values) ВЫВОДИТ СПИСОК, ПРИЧЕМ ЕСЛИ ОДИНАКОВЫХ МАКС ЗНАЧЕНИЙ БОЛЕЕ ОДНОГО ТО ВЫВОДИТ ТОЛЬКО 1 КЛЮЧ И ЭТО ЗНАЧЕНИЕ,ЗАБЫВАЯ ПРО ДРУГИЕ КЛЮЧИ С ТАКИМ ЖЕ ЗНАЧЕНИЕМ. ПОЧЕМУ?
-           print(key,':',values) # но тут в выводе пишет верно и выводит несколько ключей при равных макс значениях, но еще выводи None!!! КАК БЫТЬ???
-
+           # return(key,':',values)
+           #print(key,':',values)
+            most_often.append((key,values))
+    return most_often
 print(often_word(b))
 
 
-            # 3 Напишите функцию вывода самой редкой буквы, с которого начинаются имена в списке на выходе функц (F)
+# 3 Напишите функцию вывода самой редкой буквы, с которого начинаются имена в списке на
+
 def redkaiy_bukva(names):
     '''
     :param names: Задаем список имен
     :return: Самую редкую букву, с которой начинаются имена
     '''
 
-    c_dict={}
-    for i in range (len(b)):
-        c_dict[b[i]]=0
-    for sym in b:
-        c_dict[sym]+=1
-    print(c_dict)  # выводит словарь
-    d=list(c_dict.items())
-    e=min(list(c_dict.values())) # мин значение
-    #print(min(list(c_dict.values())))  #  выводит мин значение из списка
-    for key,values in d:
-        if values == e:
-            #print(key,':',values)
-            print((key)[0]) # разберись с print и return
+    #print(b)
+    new = []
+    for word in b:
+        new+= word[0]
+    print(new)
 
-# прога работает, но если Игорь и Ира выпадает по 1 разу,то выводит И И, а надо ведь 1 букву И.
- #У меня мозг закпел не пойму как их в строку чтоли собрать чтобы делать дальше или как быть
+    new_dict = {}
+    for r in new:
+        new_dict[r]=0
+    for sym in new:
+        new_dict[sym]+=1
+    print(new_dict)
+    dd=list(new_dict.items())
+    ee=min(list(new_dict.values())) # мин значение
 
-    #print(list(c_dict.keys()))
-   #a=list(c_dict.keys()) # список ключей
+    most_min=[]
+    for key,values in dd:
+        if values == ee:
+            most_min.append((key)[0])
+    ccc_dict={}
+    for i in range (len(most_min)):
+        ccc_dict[most_min[i]]=0
+    for sym in most_min:
+        ccc_dict[sym]+=1
+    #print(ccc_dict.keys())
+    return list(ccc_dict.keys()) # ТАК ВЫВОДИТ ВСЕ РЕДКИЕ БУКВЫ!!!!!!!!!!!!
 
 print(redkaiy_bukva(b))
 
-#PRO:
 
-#LIGHT +
 
+
+
+
+
+
+#PRO: LIGHT +
 #4.  В файле с логами найти дату самого позднего лога (по метке времени)
 
 text='''
@@ -84,3 +100,16 @@ text='''
 2019-09-19 12:21:34,338 - exampleApp - INFO - added 7 and 8 to get15
 2018-10-12 23:31:01,338 - exampleApp - INFO - Done!
 '''
+#https://andreyex.ru/yazyk-programmirovaniya-python/uchebnik-po-python-3/python-3-vremya-metod-strptime/
+from datetime import datetime
+#помещаем файл в папку с проектом!!!!!
+with open('log.csv','r') as file:
+    last_date =()
+    for line in file:
+        if not last_date:
+            last_date = datetime.strptime(line[:23], '%Y-%m-%d %H:%M:%S,%f')
+            continue
+        date = datetime.strptime(line[:23], '%Y-%m-%d %H:%M:%S,%f')
+        if date > last_date:
+            last_date = date
+print(last_date)
