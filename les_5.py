@@ -37,17 +37,27 @@ def simple_deliteli(a):
     '''
     Возвращает каноническое разложение числа на простые множители.
     '''
-    list_simple_delitelei=[]
-    for i in range(2,a):
-        if simple_numbers(i)==1:
-            if a%i==0:
-                list_simple_delitelei==list_simple_delitelei.append(i) #список простых делителей 'a'
-                while a%i!=0: # ПРИМЕР: 36/2=18 - 18/2=9 - 9/3=3 - 3/3=1
-                    a=a/i     # НО ВЫВОДИТ ВСЕ ПРОСТЫЕ ДЕЛИТЕЛИ ТОЛЬКО ПО ОДНОМУ!!!
+    if 0<a<=1000:
+        list_simple_delitelei=[]
+        for i in range(2,a):
+            while simple_numbers(i)==1 and a%i==0:
+                list_simple_delitelei.append(i) #список простых делителей 'a'
+                a=a/i
             else:
                 i+=1
 
     return list_simple_delitelei
 
-
 print(simple_deliteli(36))
+
+
+
+def max_delitel(a):
+    '''
+    Функция выводит самый большой множитель (не обязательно простой) числа.
+    '''
+    x=simple_deliteli(a) # выводит все множетели числа а
+    x.reverse()   # меняет порядок
+    return x[0]   # выводит самый первый
+
+print(max_delitel(36))
