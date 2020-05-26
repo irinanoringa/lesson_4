@@ -144,8 +144,9 @@ test_choices()
 def often_word(listik):
     '''Задается список listik.
     Возвращает самый частый элемент списка'''
-
+    global c_dict
     c_dict={}
+
     for i in range (len(b)):
         c_dict[b[i]]=0
     for sym in b:
@@ -165,7 +166,7 @@ def often_word(listik):
            #print(key,':',values)
             most_often.append((key,values))
     return most_often
-print(often_word(b))
+#print(often_word(b))
 
 def test_often_word():
     a=choices_name(new_list_names)
