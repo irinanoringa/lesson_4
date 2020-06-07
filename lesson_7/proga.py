@@ -1,7 +1,12 @@
+
+import timeit
+
+
+code_to_test ='''
 import datetime
 from docxtpl import DocxTemplate
 
-with open ('dog','r') as f:
+with open ('dog','r', encoding="utf-8") as f:
     list_dog = f.read()
 a = ','
 list_dog = list_dog.replace(', ',a)
@@ -31,3 +36,35 @@ def generate_report(company, poroda_list, old_list, weith_list):
     document = from_template(company, poroda_list, old_list, weith_list, template)
 
 generate_report(company, poroda_list, old_list, weith_list)
+'''
+elapsed_time = timeit.timeit(code_to_test, number=100)/100
+print('время 1ого кода равно',elapsed_time)
+
+
+
+
+code_to_test_2='''
+import csv
+
+
+dogs=[['poroda','weight','old'],['layika',25,18],['mops',11,8]]
+
+with open ('dog.csv','w') as d:
+    writer = csv.writer(d, delimiter = '-')
+    writer.writerows(dogs)
+'''
+elapsed_time_2 = timeit.timeit(code_to_test_2, number=100)/100
+print('время 2ого кода равно',elapsed_time_2)
+
+
+code_to_test_3='''
+import json
+
+
+dogs={'poroda':'layika','weight':25,'old':18}
+
+with open ('dog.txt','w') as c:
+    json.dump(dogs,c)
+'''
+elapsed_time_3 = timeit.timeit(code_to_test_3, number=100)/100
+print('время 2ого кода равно',elapsed_time_3)
