@@ -67,4 +67,4 @@ with open ('dog.txt','w') as c:
     json.dump(dogs,c)
 '''
 elapsed_time_3 = timeit.timeit(code_to_test_3, number=100)/100
-print('время 2ого кода равно',elapsed_time_3)
+print('время 3ого кода равно',elapsed_time_3)
